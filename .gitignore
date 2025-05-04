@@ -1,0 +1,15 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+
+# macOS junk
+.DS_Store
+
+# Secrets and sensitive files
+.env
+**/db_config.py
+**/data.sql
