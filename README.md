@@ -50,6 +50,8 @@ reviews (id, book_id, user_id, review_title, review_text, review_date, rating, r
 * A user can review multiple books
 * Each review stores its historical order (`review_number`) relative to that user/book
 
+<img src="Project/assets/bcrERD.png" alt="Entity-Relationship Diagram" width="600"/>
+
 ---
 
 ## 🖥️ Pages
