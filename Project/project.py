@@ -11,7 +11,8 @@ print("""
   </head>
   <body>
     <h1>📚 Welcome to BookClubReviews</h1>
-    <p>This is a community book club in New York! Here you can:</p>
+    <p>This is a community book club in New York!</p>
+    <p>Here you can:</p>
       <ul>
         <li>✍️ Submit a book review</li>
         <li>🔍 Browse reviews in a table</li>
