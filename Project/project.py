@@ -9,9 +9,9 @@ print("""
   </head>
   <body>
     <h1>📚 Welcome to BookClubReviews</h1>
-    <p>This is the final project for NYU's Web Development with Python and MySQL course.</p>
+    <p>This is a community book club in New York!</p>
 
-    <h2>Explore the Project</h2>
+    <h2>Explore the Book Club</h2>
     <ul>
       <li><a href="submit_review.py">✍️ Submit a Book Review</a></li>
       <li><a href="view_reviews.py">🔍 View All Reviews</a></li>
