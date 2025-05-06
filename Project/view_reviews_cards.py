@@ -78,7 +78,7 @@ cursor = conn.cursor()
 # Build query
 query = """
 SELECT books.title, books.author, users.username, reviews.review_title,
-       reviews.review_text, reviews.review_date, reviews.rating
+       reviews.review_text, reviews.review_date, reviews.rating, reviews.review_number
 FROM reviews
 JOIN books ON reviews.book_id = books.id
 LEFT JOIN users ON reviews.user_id = users.id
@@ -109,24 +109,23 @@ params.append(limit)
 cursor.execute(query, params)
 rows = cursor.fetchall()
 
-# review_tracker = {}
-
-# def ordinal(n):
-#     if 10 <= n % 100 <= 20:
-#         suffix = 'th'
-#     else:
-#         suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')
-#     return f"{n}{suffix} review"
+def ordinal(n):
+    if 10 <= n % 100 <= 20:
+        suffix = 'th'
+    else:
+        suffix = {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')
+    return f"{n}{suffix} review"
 
 if not rows:
     print("<p>No reviews found for these filters.</p>")
 else:
-  for title, author, username, review_title, review_text, date, rating in rows:
+  for title, author, username, review_title, review_text, date, rating, review_number in rows:
       reviewer = username if username else "Anonymous"
       stars = "★" * int(rating) + "☆" * (5 - int(rating))
+      label = ordinal(review_number) if review_number is not None else ""
       print(f"""
       <div class="review-card">
-        <p><strong>{reviewer}</strong> rated a book {stars}</p>
+        <p><strong>{reviewer}</strong> rated a book {stars} <span class="review-label">{f"({label})" if label else ""}</span></p>
         <p class="book-title">{title}</p>
         <p class="book-author">by {author}</p>
         <br>
@@ -139,9 +138,10 @@ else:
 cursor.close()
 conn.close()
 
-print("""
-<p><a href="submit_review.py">✍️ Submit a new review</a></p>
-<p><a href="project.py">🏠 Back to Home</a></p>
-</body>
-</html>
-""")
+try:
+    with open("html/footer.html", "r") as f:
+        print(f.read())
+except Exception as e:
+    print(f"<!-- Footer load failed: {e} -->")
+
+print("</body></html>")

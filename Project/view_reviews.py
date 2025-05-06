@@ -78,7 +78,7 @@ cursor = conn.cursor()
 # Build query
 query = """
 SELECT books.title, books.author, users.username, reviews.review_title, 
-       reviews.review_text, reviews.review_date, reviews.rating
+       reviews.review_text, reviews.review_date, reviews.rating, reviews.review_number
 FROM reviews
 JOIN books ON reviews.book_id = books.id
 LEFT JOIN users ON reviews.user_id = users.id
@@ -118,20 +118,20 @@ if not rows:
 else:
     print('<div class="table-container">')
     print("<table border='1' cellpadding='5'>")
-    print("<thead><tr><th>Book</th><th>Author</th><th>Reviewer</th><th>Review Title</th><th>Review</th><th>Rating</th><th>Date</th></tr></thead>")
+    print("<thead><tr><th>Book</th><th>Author</th><th>Reviewer</th><th>Review Title</th><th>Review</th><th>Rating</th><th>Date</th><th>Review Count</th></tr></thead>")
     print("<tbody>")
-    for title, author, username, review_title, review, date, rating in rows:
+    for title, author, username, review_title, review, date, rating, review_number in rows:
         reviewer = username if username else "Anonymous"
-        print(f"<tr><td>{title}</td><td>{author}</td><td>{reviewer}</td><td>{review_title}</td><td>{review}</td><td>{rating}</td><td>{date}</td></tr>")
+        print(f"<tr><td>{title}</td><td>{author}</td><td>{reviewer}</td><td>{review_title}</td><td>{review}</td><td>{rating}</td><td>{date}</td><td>{review_number}</td></tr>")
     print("</tbody></table></div>")
 
 cursor.close()
 conn.close()
 
-print("""
-    <ul>
-      <li><a href="project.py">🏠 Back to Home</a></li>
-      <li><a href="submit_review.py">✍️ Submit a Book Review</a></li>
-    </ul>
-      """)
+try:
+    with open("html/footer.html", "r") as f:
+        print(f.read())
+except Exception as e:
+    print(f"<!-- Footer load failed: {e} -->")
+
 print("</body></html>")

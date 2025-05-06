@@ -109,10 +109,21 @@ else:
     else:
         try:
             cursor = conn.cursor()
+
+            # Step 1: Count existing reviews by this user for this book
             cursor.execute(
-                "INSERT INTO reviews (book_id, user_id, review_title, review_text, rating) VALUES (%s, %s, %s, %s, %s)",
-                (book_id, 1, review_title, review_text, rating)
+                "SELECT COUNT(*) FROM reviews WHERE user_id = %s AND book_id = %s",
+                (1, book_id)  # This is hardcoded logic for user_id; replace in future
             )
+            count = cursor.fetchone()[0]
+            review_number = count + 1
+
+            # Step 2: Insert new review with calculated review_number enhancement
+            cursor.execute("""
+                INSERT INTO reviews (book_id, user_id, review_title, review_text, rating, review_date, review_number)
+                VALUES (%s, %s, %s, %s, %s, NOW(), %s)
+            """, (book_id, 1, review_title, review_text, rating, review_number)) # This is hardcoded logic for user_id; replace in future
+
             conn.commit()
             cursor.close()
             print("<p style='color:green;'>✅ Review submitted successfully.</p>")
@@ -121,10 +132,10 @@ else:
         finally:
             conn.close()
 
-print("""
-    <ul>
-      <li><a href="project.py">🏠 Back to Home</a></li>
-      <li><a href="view_reviews.py">🔍 View All Reviews</a></li>
-    </ul>
-      """)
+try:
+    with open("html/footer.html", "r") as f:
+        print(f.read())
+except Exception as e:
+    print(f"<!-- Footer load failed: {e} -->")
+
 print("</body></html>")
