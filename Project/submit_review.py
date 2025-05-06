@@ -13,7 +13,9 @@ print("""
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Review</title>
+    <link rel="stylesheet" type="text/css" href="html/style.css">
   </head>
   <body>
     <h1>Submit a Book Review</h1>
@@ -86,7 +88,15 @@ if not is_post or validation_messages:
 
         # Rating
         print('<label for="rating">Rating (1–5): <span style="color:red;">*</span></label><br>')
-        print(f'<input type="number" name="rating" min="1" max="5" value="{rating}"><br><br>')
+
+        print('<select name="rating">')
+        print(f'<option value="" {"selected" if not rating else ""} disabled>-- Select a Rating --</option>')
+
+        for i in range(1, 6):
+            selected = 'selected' if str(i) == rating else ''
+            print(f'<option value="{i}" {selected}>{i}</option>')
+
+        print('</select><br><br>')
 
         print('<input type="submit" value="Submit Review">')
         print('</form>')

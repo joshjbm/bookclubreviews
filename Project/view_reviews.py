@@ -29,7 +29,9 @@ print(f"""
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Reviews</title>
+    <link rel="stylesheet" type="text/css" href="html/style.css">
   </head>
   <body>
     <h1>Book Reviews</h1>
@@ -114,13 +116,14 @@ rows = cursor.fetchall()
 if not rows:
     print("<p>No reviews found for these filters.</p>")
 else:
+    print('<div class="table-container">')
     print("<table border='1' cellpadding='5'>")
     print("<thead><tr><th>Book</th><th>Author</th><th>Reviewer</th><th>Review Title</th><th>Review</th><th>Rating</th><th>Date</th></tr></thead>")
     print("<tbody>")
     for title, author, username, review_title, review, date, rating in rows:
         reviewer = username if username else "Anonymous"
         print(f"<tr><td>{title}</td><td>{author}</td><td>{reviewer}</td><td>{review_title}</td><td>{review}</td><td>{rating}</td><td>{date}</td></tr>")
-    print("</tbody></table>")
+    print("</tbody></table></div>")
 
 cursor.close()
 conn.close()

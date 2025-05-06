@@ -5,7 +5,9 @@ print("""
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>BookClubReviews – Project Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookClubReviews – Home</title>
+    <link rel="stylesheet" type="text/css" href="html/style.css">
   </head>
   <body>
     <h1>📚 Welcome to BookClubReviews</h1>
