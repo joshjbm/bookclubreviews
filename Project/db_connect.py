@@ -1,13 +1,11 @@
-# Project/db_connect.py
+#!/usr/bin/env python3
 
-import mysql.connector
-from mysql.connector import Error
+import pymysql
 from db_config import DB_CONFIG
 
 def get_connection():
     try:
-        connection = mysql.connector.connect(**DB_CONFIG)
-        return connection
-    except Error as e:
-        print("Error connecting to MySQL database:", e)
+        return pymysql.connect(**DB_CONFIG)
+    except Exception as e:
+        print(f"<p>Error connecting to MySQL database: {e}</p>")
         return None

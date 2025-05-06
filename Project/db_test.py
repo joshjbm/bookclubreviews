@@ -1,6 +1,9 @@
-# Project/db_test.py
+#!/usr/bin/env python3
 
+import cgitb
 from db_connect import get_connection
+
+cgitb.enable()
 
 print("Content-Type: text/html\n")
 print("<html><body>")
