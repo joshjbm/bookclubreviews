@@ -96,7 +96,12 @@ GitHub: [joshjbm](https://github.com/joshjbm)
   ├── view_reviews_cards.py
   ├── db_connect.py
   ├── db_config.py
-  ├── data.sql
+  ├── assets/
+  │   └── bcrERD.dbml
+  │   └── bcrERD.png
+  ├── data/
+  │   └── data.sql
+  │   └── tables.sql
   ├── html/
   │   └── footer.html
   │   └── style.css

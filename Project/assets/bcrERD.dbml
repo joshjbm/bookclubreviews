@@ -1,0 +1,40 @@
+// DBML schema for bookclubreviews project
+// Reflects 3 core tables: users, books, reviews
+
+Table users {
+  id          int [pk, increment]
+  username    varchar(50) [not null, unique]
+  first_name  varchar(50) [not null]
+  last_name   varchar(50) [not null]
+  email       varchar(255) [not null, unique]
+  created_at  timestamp [not null, default: `CURRENT_TIMESTAMP`]
+}
+
+Table books {
+  id             int [pk, increment]
+  title          varchar(255) [not null]
+  author         varchar(255)
+  published_date date
+  genre          varchar(50)
+  created_at     timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at     timestamp [note: "Updated on change", default: null]
+
+  indexes {
+    (title, author) [unique, name: "uq_books_title_author"]
+  }
+}
+
+Table reviews {
+  id            int [pk, increment]
+  book_id       int [not null, ref: > books.id, note: "Each review must be linked to a book"]
+  user_id       int [ref: > users.id, note: "Review may be anonymous or linked to a user"]
+  review_title  varchar(255) [not null]
+  review_text   text [not null]
+  review_date   timestamp [default: `CURRENT_TIMESTAMP`]
+  rating        tinyint
+  review_number int [not null]
+  created_at    timestamp [not null, default: `CURRENT_TIMESTAMP`]
+  updated_at    timestamp [note: "Updated on change", default: null]
+
+  Note: "ON DELETE CASCADE for book_id; ON DELETE SET NULL for user_id"
+}
