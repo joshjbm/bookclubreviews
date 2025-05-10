@@ -34,20 +34,20 @@ validation_messages = []
 if is_post:
     # Validation
     if not book_id:
-        validation_messages.append("Please select a book.")
+        validation_messages.append("⚠️ Please select a book.")
     if not review_title:
-        validation_messages.append("Please enter a review title.")
+        validation_messages.append("⚠️ Please enter a review title.")
     if not review_text:
-        validation_messages.append("Please enter your review.")
+        validation_messages.append("⚠️ Please enter your review.")
     if not rating:
-        validation_messages.append("Please provide a rating between 1 and 5.")
+        validation_messages.append("⚠️ Please provide a rating between 1 and 5.")
     else:
         try:
             rating = int(rating)
             if rating < 1 or rating > 5:
-                validation_messages.append("Rating must be between 1 and 5.")
+                validation_messages.append("⚠️ Rating must be between 1 and 5.")
         except ValueError:
-            validation_messages.append("Rating must be a number between 1 and 5.")
+            validation_messages.append("⚠️ Rating must be a number between 1 and 5.")
 
 if not is_post or validation_messages:
     if is_post and validation_messages:
@@ -58,7 +58,7 @@ if not is_post or validation_messages:
 
     conn = get_connection()
     if not conn:
-        print("<p style='color:red;'>Could not connect to database.</p>")
+        print("<p style='color:red;'>❌ Failed to connect to the database.</p>")
     else:
         cursor = conn.cursor()
         cursor.execute("SELECT id, title FROM books ORDER BY title")
@@ -85,9 +85,9 @@ if not is_post or validation_messages:
         # Review text
         print('<label for="review_text">Your Review: <span style="color:red;">*</span></label><br>')
         print(f'<textarea name="review_text" rows="5" cols="60">{review_text}</textarea><br><br>')
-
+ß
         # Rating
-        print('<label for="rating">Rating (1–5): <span style="color:red;">*</span></label><br>')
+        print('<label for="rating">Rating (1-5): <span style="color:red;">*</span></label><br>')
 
         print('<select name="rating">')
         print(f'<option value="" {"selected" if not rating else ""} disabled>-- Select a Rating --</option>')
@@ -105,7 +105,7 @@ else:
     # All inputs valid, proceed to insert
     conn = get_connection()
     if not conn:
-        print("<p style='color:red;'>Could not connect to database.</p>")
+        print("<p style='color:red;'>❌ Failed to connect to the database.</p>")
     else:
         try:
             cursor = conn.cursor()

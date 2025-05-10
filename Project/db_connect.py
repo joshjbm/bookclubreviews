@@ -7,5 +7,5 @@ def get_connection():
     try:
         return pymysql.connect(**DB_CONFIG)
     except Exception as e:
-        print(f"<p>Error connecting to MySQL database: {e}</p>")
+        print(f"<p>❌ Error connecting to MySQL database: {e}</p>")
         return None
