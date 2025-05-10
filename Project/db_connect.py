@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+"""
+BookClubReviews - Database Connection
+========================
+Provides the database connection for the BookClubReviews application.
+This module handles the connection to the MySQL database using pymysql.
+"""
 
 import pymysql
 from db_config import DB_CONFIG

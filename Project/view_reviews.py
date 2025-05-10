@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+"""
+BookClubReviews - View Reviews (Tabular View)
+========================
+CGI script to display book reviews in a tabular format.
+Supports filtering by book title, author, rating, reviewer and sorting by date.
+"""
 
 import cgi
 import cgitb 

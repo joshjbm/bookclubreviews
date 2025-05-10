@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-
 """
-This is a blank template for the database configuration file.
-Please fill in the required fields with your database credentials.
+BookClubReviews - Database Configuration (Blank Template)
+========================
+Provides the database configuration variables.
+This is intended to be used with the db_connect script.
+This is a template to be renamed db_config.py with the database credentials.
 """
 
 DB_CONFIG = {

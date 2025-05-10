@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+"""
+BookClubReviews - Landing Page
+========================
+Landing page for the BookClubReviews web application.
+Provides navigation links to submit and view book reviews.
+"""
 
 print("Content-Type: text/html\n")
 print("""

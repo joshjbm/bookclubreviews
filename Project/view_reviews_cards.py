@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+"""
+BookClubReviews - View Reviews (Cards View)
+========================
+CGI script to display book reviews styled in a card format.
+Supports filtering by book title, author, rating, reviewer and sorting by date.
+"""
 
 import cgi
 import cgitb

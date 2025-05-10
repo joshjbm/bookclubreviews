@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""
+BookClubReviews - Database Test
+========================
+Tests the database connection for the application.
+"""
 
 import cgitb
 from db_connect import get_connection

@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+"""
+BookClubReviews - Submit Review
+========================
+CGI script for submitting new book reviews via a HTML form. 
+Validates input and inserts review data into the MySQL database.
+"""
 
 import cgi
 import cgitb
@@ -85,7 +91,7 @@ if not is_post or validation_messages:
         # Review text
         print('<label for="review_text">Your Review: <span style="color:red;">*</span></label><br>')
         print(f'<textarea name="review_text" rows="5" cols="60">{review_text}</textarea><br><br>')
-ß
+
         # Rating
         print('<label for="rating">Rating (1-5): <span style="color:red;">*</span></label><br>')
 
